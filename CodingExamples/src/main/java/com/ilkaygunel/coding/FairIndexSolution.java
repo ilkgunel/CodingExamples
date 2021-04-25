@@ -8,15 +8,21 @@ import java.util.*;
 
 public class FairIndexSolution {
     public static void main(String[] args) {
-        Map<Integer, Integer> sumForFairIndexesForFirstArray = new HashMap<>();
-        Map<Integer, Integer> sumForFairIndexesForSecondArray = new HashMap<>();
-
         int[] firstArray = {4, -1, 0, 3};
         int[] secondArray = {-2, 6, 0, 4};
 
         FairIndexSolution fairIndexSolution = new FairIndexSolution();
-        fairIndexSolution.findFairIndexAndSum(firstArray, sumForFairIndexesForFirstArray);
-        fairIndexSolution.findFairIndexAndSum(secondArray, sumForFairIndexesForSecondArray);
+        int fairIndexCount = fairIndexSolution.getFairIndexCount(firstArray, secondArray);
+        System.out.println("Output:" + fairIndexCount);
+
+    }
+
+    public int getFairIndexCount(int[] firstArray, int[] secondArray) {
+        Map<Integer, Integer> sumForFairIndexesForFirstArray = new HashMap<>();
+        Map<Integer, Integer> sumForFairIndexesForSecondArray = new HashMap<>();
+
+        findFairIndexAndSum(firstArray, sumForFairIndexesForFirstArray);
+        findFairIndexAndSum(secondArray, sumForFairIndexesForSecondArray);
 
         sumForFairIndexesForFirstArray.entrySet().forEach(entry -> {
             sumForFairIndexesForSecondArray.entrySet().removeIf(item ->
@@ -30,7 +36,8 @@ public class FairIndexSolution {
         sumForFairIndexesForSecondArray.entrySet().forEach(item -> {
             System.out.println((item.getKey() + 1) + ":" + item.getValue());
         });
-        System.out.println("Output:" + sumForFairIndexesForSecondArray.size());
+        return sumForFairIndexesForSecondArray.size();
+
     }
 
     private void findFairIndexAndSum(int[] arrayForProcessing, Map<Integer, Integer> mapForResult) {
