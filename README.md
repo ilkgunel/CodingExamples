@@ -17,4 +17,3 @@ This repository contains some example codes for some questions.
         Output: 5268
 	Input:  670
 	Output: 6750
-	
